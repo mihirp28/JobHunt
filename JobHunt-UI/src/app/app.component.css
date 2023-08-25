@@ -1,0 +1,39 @@
+
+.ctr{
+margin-left: 40%;
+}
+
+.mat-toolbar.mat-primary{
+    background: rgb(0, 8, 8);
+
+}
+
+.fill-space{
+flex:  1 1 auto;     
+}
+
+.bookmarkbtn{
+
+    margin-left: 19%;
+
+}
+@media screen and (max-width: 700px) {
+    .header button span{
+    display: none;
+        margin: 0px;
+        padding: 0px;
+}
+.user-button{
+    display:none;
+}
+}
+
+.material-icons.md-48 { 
+    font-size: 35px; 
+}
+
+.header{
+    position: sticky;
+    top:0px;
+    z-index:8;
+}

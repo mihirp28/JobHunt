@@ -1,0 +1,50 @@
+.login-block{
+    margin: auto;
+    width: 35%;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+    background: #f4f4ec;
+    margin-top: 10%;
+    height: 350px;
+    border-radius: 5%;
+    opacity:0.88;
+}
+
+.register-input-full-width{
+    width: 300px;
+}
+
+h3{
+    text-align: center;
+}
+.login-user{
+    margin: 18px;
+}
+
+.bg {
+    background-image: url("https://media.istockphoto.com/photos/top-view-of-a-white-desktop-concept-job-search-picture-id1279104620?b=1&k=20&m=1279104620&s=170667a&w=0&h=jcW2DC3tLKnfcU2f9fVRScTckqemE1vEhvOZ7uELg0M=");
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 60px;
+    background-size: cover;
+background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1024px){
+    .bg {
+    left: 50%;
+    margin-left: -512px; }
+}
+
+.error{
+    color:red;
+}

@@ -1,5 +1,5 @@
 To run Frontend
-Run- npm start command in terminal
+Run- npm install then npm start command in terminal
 
 To run Backend
 Setup STS ide --> Install Lombok 

@@ -59,36 +59,47 @@ public class UserController {
 	@PostMapping("/change-password")
 	public ResponseEntity<?> changePassword(@RequestBody Map<String, String> request, HttpServletRequest req) {
 	    try {
-	        // Extract claims from the request attributes
+	        // Extract claims from request attributes
 	        Claims claims = (Claims) req.getAttribute("claims");
-	        
 	        if (claims == null) {
-	            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+	                                 .body(Map.of("message", "Unauthorized access"));
 	        }
 
-	        // Fetch user ID from claims (subject)
+	        // Fetch user ID and input passwords
 	        String userId = claims.getSubject();
-
-	        // Extract other details like old password and new password
 	        String oldPassword = request.get("oldPassword");
 	        String newPassword = request.get("newPassword");
 
+	        // Validate input
 	        if (oldPassword == null || newPassword == null) {
-	            throw new Exception("Old password and new password are required.");
+	            return ResponseEntity.badRequest()
+	                                 .body(Map.of("message", "Old and new passwords are required"));
+	        }
+	        
+	     // Check if old password and new password are the same
+	        if (oldPassword.equals(newPassword)) {
+	            return ResponseEntity.badRequest()
+	                                 .body(Map.of("message", "Old password and new password cannot be the same"));
 	        }
 
+	        // Perform password change
 	        boolean isPasswordChanged = userService.changePassword(userId, oldPassword, newPassword);
 
 	        if (isPasswordChanged) {
-	            return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+	            return ResponseEntity.ok(Map.of("message", "Password updated successfully"));
 	        } else {
-	            return new ResponseEntity<>("Old password is incorrect", HttpStatus.UNAUTHORIZED);
+	            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+	                                 .body(Map.of("message", "Old password is incorrect"));
 	        }
 
 	    } catch (UserNotFoundException e) {
-	        return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.NOT_FOUND);
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	                             .body(Map.of("message", e.getMessage()));
 	    } catch (Exception e) {
-	        return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.BAD_REQUEST);
+	        return ResponseEntity.badRequest()
+	                             .body(Map.of("message", "An error occurred: " + e.getMessage()));
 	    }
 	}
+
 }

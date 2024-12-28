@@ -50,5 +50,23 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+		public boolean changePassword(String userId, String oldPassword, String newPassword) throws UserNotFoundException {
+		    Optional<User> userOptional = userRepo.findById(userId);
+
+		    if (!userOptional.isPresent()) {
+		        throw new UserNotFoundException("User not found with id: " + userId);
+		    }
+
+		    User user = userOptional.get();
+
+		    if (!user.getPassword().equals(oldPassword)) {
+		        return false; // Old password is incorrect
+		    }
+
+		    user.setPassword(newPassword);
+		    userRepo.save(user);
+		    return true;
+		}
+
 
 }

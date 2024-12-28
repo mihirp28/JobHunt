@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.stackroute.accountmanager.exception.UserNotFoundException;
 import com.stackroute.accountmanager.model.User;
 import com.stackroute.accountmanager.service.TokenGenerator;
 import com.stackroute.accountmanager.service.UserService;
@@ -50,4 +51,30 @@ public class UserController {
 			return new ResponseEntity<String>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.UNAUTHORIZED);
 		}
 	}
+	
+	@PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> request) {
+        try {
+            String userId = request.get("userId");
+            String oldPassword = request.get("oldPassword");
+            String newPassword = request.get("newPassword");
+
+            if (userId == null || oldPassword == null || newPassword == null) {
+                throw new Exception("All fields (userId, oldPassword, newPassword) are required.");
+            }
+
+            boolean isPasswordChanged = userService.changePassword(userId, oldPassword, newPassword);
+
+            if (isPasswordChanged) {
+                return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Old password is incorrect", HttpStatus.UNAUTHORIZED);
+            }
+
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

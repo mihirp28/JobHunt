@@ -9,6 +9,8 @@ public interface UserService {
 	boolean saveUser (User user) throws UserAlreadyExistsException;
 	
 	public User findByUserIdAndPassword (String userId, String password) throws UserNotFoundException;
+
+	boolean changePassword(String userId, String oldPassword, String newPassword) throws UserNotFoundException;
 	
 	
 }

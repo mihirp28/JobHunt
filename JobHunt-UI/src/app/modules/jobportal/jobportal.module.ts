@@ -9,6 +9,8 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule, MatButtonModule, MatSnackBarModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatPaginatorModule, MatDividerModule, MatProgressSpinnerModule, MatProgressBarModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { InterceptorService } from './services/interceptor.service';
 import { JobdialogComponent } from './components/jobdialog/jobdialog.component';
 import { ViewjobComponent } from './components/viewjob/viewjob.component';
@@ -34,6 +36,8 @@ import { ViewjobComponent } from './components/viewjob/viewjob.component';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
+    MatIconModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatPaginatorModule,

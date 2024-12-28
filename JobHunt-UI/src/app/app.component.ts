@@ -50,6 +50,14 @@ export class AppComponent
     this.authService.deleteToken();
     this.router.navigate(['/login']);
   }
+  changePassword() {
+    console.log('Change Password clicked');
+    
+   
+      this.router.navigate(['/change-password']);
+    }
+  
+  
 
 
 }

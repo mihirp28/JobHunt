@@ -20,10 +20,15 @@
             </button>
         
 <span class="fill-space"> </span>
-        <button mat-button class="user-button" *ngIf="checkLoggedIn()">
-            <i class="material-icons">account_circle</i>
-            &nbsp;<span>{{userId}}</span>
-            </button>
+<button mat-button [matMenuTriggerFor]="userMenu" class="user-button" *ngIf="checkLoggedIn()">
+    <i class="material-icons">account_circle</i>
+    &nbsp;<span>{{ userId }}</span>
+  </button>
+  
+  <!-- Dropdown Menu -->
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="changePassword()">Change Password</button>
+  </mat-menu>
 
         <button class="logout-btn" mat-button *ngIf="checkLoggedIn()" (click)="logOut()">
         <i class="material-icons">power_settings_new</i>

@@ -23,6 +23,14 @@ public class JwtFilter extends GenericFilterBean {
 		
 		final HttpServletRequest request = (HttpServletRequest) req;
 		final HttpServletResponse response = (HttpServletResponse) res;
+		
+	    // Skip filter for certain endpoints(login and register)
+		String path = request.getRequestURI();
+	    if (path.contains("/login") || path.contains("/register")) {
+	        chain.doFilter(req, res);
+	        return;
+	    }
+		
 		final String authHeader = request.getHeader("authorization");
 		if("OPTIONS".equals(request.getMethod())){
 			response.setStatus(HttpServletResponse.SC_OK);

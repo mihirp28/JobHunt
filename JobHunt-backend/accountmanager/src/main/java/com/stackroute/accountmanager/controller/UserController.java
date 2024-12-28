@@ -2,6 +2,8 @@ package com.stackroute.accountmanager.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import com.stackroute.accountmanager.exception.UserNotFoundException;
 import com.stackroute.accountmanager.model.User;
 import com.stackroute.accountmanager.service.TokenGenerator;
 import com.stackroute.accountmanager.service.UserService;
+
+import io.jsonwebtoken.Claims;
 
 @RestController
 @RequestMapping("/api/v1/userservice")
@@ -53,28 +57,38 @@ public class UserController {
 	}
 	
 	@PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> request) {
-        try {
-            String userId = request.get("userId");
-            String oldPassword = request.get("oldPassword");
-            String newPassword = request.get("newPassword");
+	public ResponseEntity<?> changePassword(@RequestBody Map<String, String> request, HttpServletRequest req) {
+	    try {
+	        // Extract claims from the request attributes
+	        Claims claims = (Claims) req.getAttribute("claims");
+	        
+	        if (claims == null) {
+	            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+	        }
 
-            if (userId == null || oldPassword == null || newPassword == null) {
-                throw new Exception("All fields (userId, oldPassword, newPassword) are required.");
-            }
+	        // Fetch user ID from claims (subject)
+	        String userId = claims.getSubject();
 
-            boolean isPasswordChanged = userService.changePassword(userId, oldPassword, newPassword);
+	        // Extract other details like old password and new password
+	        String oldPassword = request.get("oldPassword");
+	        String newPassword = request.get("newPassword");
 
-            if (isPasswordChanged) {
-                return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Old password is incorrect", HttpStatus.UNAUTHORIZED);
-            }
+	        if (oldPassword == null || newPassword == null) {
+	            throw new Exception("Old password and new password are required.");
+	        }
 
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.BAD_REQUEST);
-        }
-    }
+	        boolean isPasswordChanged = userService.changePassword(userId, oldPassword, newPassword);
+
+	        if (isPasswordChanged) {
+	            return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>("Old password is incorrect", HttpStatus.UNAUTHORIZED);
+	        }
+
+	    } catch (UserNotFoundException e) {
+	        return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.NOT_FOUND);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.BAD_REQUEST);
+	    }
+	}
 }

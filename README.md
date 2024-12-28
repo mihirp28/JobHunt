@@ -2,6 +2,6 @@
 Run- npm install --> npm start command in terminal
 
 ## To run Backend
-Setup STS ide --> Install Lombok 
+Setup STS ide --> Install Lombok(required) 
 Run as Spring Boot application --> First run Eureka microservice then run other microservices  
 

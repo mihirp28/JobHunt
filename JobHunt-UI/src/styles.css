@@ -4,7 +4,7 @@
 body {
     margin:0px;
     padding:0px;
-    background:rgba(197, 221, 214, 0.503);
+    background:#ffffff;
 }
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: darkslategrey;

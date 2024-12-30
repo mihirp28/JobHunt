@@ -5,7 +5,7 @@
         <mat-icon aria-hidden="false" class="homebtn" aria-label="Example home icon">home</mat-icon><span > &nbsp; Home</span>
         </button>
     <span class="ctr">
-       <b>JobHunt</b>
+       <b >JobHunt</b>
     </span> 
 
         <button id="bkButton" class="bookmarkbtn" mat-button *ngIf="checkLoggedIn()" [routerLink]="['/jobs/bookmark']">
@@ -27,14 +27,16 @@
   
   <!-- Dropdown Menu -->
   <mat-menu #userMenu="matMenu">
-    <button mat-menu-item (click)="changePassword()">Change Password</button>
-  </mat-menu>
-
-        <button class="logout-btn" mat-button *ngIf="checkLoggedIn()" (click)="logOut()">
+    <button class="change-password"  mat-menu-item mat-menu-item *ngIf="checkLoggedIn()" (click)="changePassword()">
+        <i class="material-icons">key</i>
+        <span>Change Password</span>
+    </button>
+  
+        <button class="logout-btn" mat-menu-item *ngIf="checkLoggedIn()" (click)="logOut()">
         <i class="material-icons">power_settings_new</i>
        <span> Logout </span>
         </button>
-
+    </mat-menu>
 </mat-toolbar>
 </div>
 

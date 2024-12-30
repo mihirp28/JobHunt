@@ -26,10 +26,12 @@
     </mat-card-content>
   </div>
   <mat-card-actions class="movie-actions">
-      <button *ngIf="!check()" class="addButton" mat-raised-button color="primary" (click)="addToBookmark()">Add to Bookmark</button>
+    <div class="Bookmarkbutton">  
+    <button *ngIf="!check()" class="addButton" mat-raised-button color="primary" (click)="addToBookmark()">Add to Bookmark</button>
       <!-- <button *ngIf="check()" mat-raised-button color="primary" mat-button (click)="deleteFromBookmark()">Delete</button>
       <button *ngIf="check() " mat-raised-button color="primary" mat-button (click)="updateJobStatus('update')" align="end">Update</button>
    -->
+      </div>
   </mat-card-actions>
 </mat-card>
 </div>

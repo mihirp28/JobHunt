@@ -1,13 +1,13 @@
-.job-thumbnail{
+.job-thumbnail {
     -webkit-font-smoothing: antialiased;
-    width:250px;
-    margin:0px 10px;
-    border:1px solid darkslategrey;
-    background: #050505; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #d8e0de 0%, #aebfbc 22%, #99afab 33%, #8ea6a2 50%, #829d98 66%, #4e5c5a 85%, #0e0e0e 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #d8e0de 0%,#aebfbc 22%,#99afab 33%,#8ea6a2 50%,#829d98 66%,#4e5c5a 85%,#0e0e0e 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #d8e0de 0%,#aebfbc 22%,#99afab 33%,#8ea6a2 50%,#829d98 66%,#4e5c5a 85%,#0e0e0e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e0de', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */    
+    width: 280px;
+    margin: 0px 10px;
+    border: 1px solid darkslategrey;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    background: #eaeaea;
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+
 }
 
 
@@ -18,11 +18,9 @@
 
 }
 
-
-
-.job-actions{
-  
-text-align: right;
+.job-actions {
+    padding: 10px; /* Add padding */
+    text-align: right;
 }
 
 .mat-card.job-thumbnail.mat-card{
@@ -30,28 +28,78 @@ text-align: right;
     margin-bottom:50px; 
 }
 .mat-card{
-    transition: all .2s ease-in-out; 
+    transition: all 0.2s ease-in-out; 
  
  }
- .mat-card:hover{
-   
-     transform: scale(1.1) ;  
-     
- }
- 
-.job-thumbnail:hover{
-    cursor: pointer;
+.mat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+
+ 
+ .job-thumbnail:hover {
+    cursor: pointer;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+    transform: scale(1.05); /* Slight hover scaling */
+}
+
 .mat-card-header {
-    height:50px;
+    height:70px;
     padding-bottom: 8px;
     overflow: hidden;
 }
+
 .mat-card-content{
-    margin: 4% 4%;
+    padding: 12px;
 }
 
 .title{
 
     font-size: 15px;
 }
+
+.jobTitle{
+
+    font-size: 12px;
+}
+
+.addButton,
+.deleteButton,
+.updateButton {
+    color: white; /* Text color */
+    border-radius: 4px; /* Rounded corners */
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+}
+
+.addButton:hover,
+.deleteButton:hover,
+.updateButton:hover {
+    transform: scale(1.05); /* Slight hover scaling */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Space between buttons */
+}
+
+
+
+
+
+.job-subtitle {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+
+.mat-card-content h5, .title {
+    margin: 6px 0;
+    line-height: 1.4;
+    font-size: 13px;
+}
+

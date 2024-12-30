@@ -1,5 +1,5 @@
 .movie-thumbnail{
- 
+    
     margin:0px 10px;
     border:1px solid blueviolet;
     
@@ -26,4 +26,18 @@ text-align: right;
 .spinner{
     margin: auto;
     margin-top: 15%;   
+}
+
+.addButton:hover{
+    transform: scale(1.05); /* Slight hover scaling */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+.addButton{
+    color: white; /* Text color */
+    border-radius: 4px; /* Rounded corners */
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+}
+.Bookmarkbutton{
+    display: flex;
+    justify-content: center;
 }
